@@ -91,19 +91,6 @@ La evaluación tendrá en cuenta:
 
 ---
 
-## 📁 Estructura del repositorio
-```text
-📁 PROYECTO/
-│
-├── src/
-│   └── codigo.ino
-│
-├── docs/
-│   └── memoria.pdf
-│
-└── README.md
-```
-
 ## 📌 Nota
 
 Este proyecto está alineado con los **Objetivos de Desarrollo Sostenible (ODS)**, fomentando la innovación, la sostenibilidad y la conciencia ambiental.
