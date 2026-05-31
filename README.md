@@ -92,10 +92,24 @@ La evaluación tendrá en cuenta:
 ---
 
 ## 📁 Estructura del repositorio
-│  ├── └──
-├── Alumnado
-│  └──
-
+📁 Escuchando la naturaleza/
+│
+├── 📁 Alumnado/
+│   └── ARCHIVO_CODIGO.ino
+│
+├── 📁 Profesorado/
+│   ├── ESQUEMA_O_FOTO_1
+│   └── ESQUEMA_O_FOTO_2
+│
+├── 📁 docs/
+│   ├── IMAGEN_1
+│   └── IMAGEN_2
+│
+├── 📁 docs/
+│   ├── MEMORIA_PROYECTO.pdf
+│   └── DIARIO_DE_TRABAJO.pdf
+│
+└── README.md
 ---
 
 ## 📌 Nota
