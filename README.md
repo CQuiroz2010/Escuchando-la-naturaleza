@@ -92,3 +92,16 @@ La evaluación tendrá en cuenta:
 ---
 
 ## 📁 Estructura del repositorio
+
+
+---
+
+## 📌 Nota
+
+Este proyecto está alineado con los **Objetivos de Desarrollo Sostenible (ODS)**, fomentando la innovación, la sostenibilidad y la conciencia ambiental.
+
+---
+
+## 🧠 ¡A construir!
+
+Ingenieros, la naturaleza ya está hablando… ahora nos toca a nosotros escucharla.
