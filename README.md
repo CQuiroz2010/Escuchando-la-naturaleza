@@ -92,23 +92,14 @@ La evaluación tendrá en cuenta:
 ---
 
 ## 📁 Estructura del repositorio
-📁 Escuchando la naturaleza/
-│
-├── 📁 Alumnado/
-│   └── ARCHIVO_CODIGO.ino
-│
-├── 📁 Profesorado/
-│   ├── ESQUEMA_O_FOTO_1
-│   └── ESQUEMA_O_FOTO_2
-│
-├── 📁 docs/
-│   ├── IMAGEN_1
-│   └── IMAGEN_2
-│
-├── 📁 docs/
-│   ├── MEMORIA_PROYECTO.pdf
-│   └── DIARIO_DE_TRABAJO.pdf
-│
+.
+├── alumnos/
+│   ├── Presentación pdf para alumnos.pdf
+│   ├── Presentación power para los alumnos.pptx
+│   └── Recursos.txt
+├── profesorado/
+│   ├── Proyecto inmersion.pdf
+│   └── RA-Avaluar.xlsx
 └── README.md
 ---
 
