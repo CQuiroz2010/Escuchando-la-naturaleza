@@ -1,0 +1,131 @@
+//Credit to Great Scott for spybug project without which this project would not have been created
+//https://www.youtube.com/user/greatscottlab (channel)
+//https://youtu.be/7Hn4UFi9wvs (spybug_project)
+
+/*
+1. Edit pcmConfig.h
+    a: On Uno or non-mega boards, #define buffSize 128. May need to increase.
+    b: Uncomment #define ENABLE_RECORDING and #define BLOCK_COUNT 10000UL
+
+2. See https://github.com/TMRh20/TMRpcm/wiki/Advanced-Features#wiki-recording-audio for
+   additional informaiton.
+
+   # For recording, uncomment ENABLE_RECORDING variable in Config.h file in the TMRpcm.h library
+*/
+
+#include <SD.h>
+#include <SPI.h>
+#include <TMRpcm.h>
+#include <RTClib.h>
+#include <UnixTime.h>
+#define ON_MIN 1
+#define OFF_MIN 1
+#define SD_ChipSelectPin 10
+//#define ON_TIME (int(ON_MIN * 60 * 1000))
+//#define OFF_TIME (int(OFF_MIN * 60 * 1000)) 
+//#define ON_TIME 30000
+//#define OFF_TIME 30000
+
+RTC_DS3231 rtc;
+
+TMRpcm audio;
+int file_number = 0;
+bool recording_now = false;
+bool state_rec = false;
+//const int ON_MIN = 1;
+//const int OFF_MIN = 1;
+unsigned long int ON_TIME = ON_MIN * 60 * 1000L;
+unsigned long int OFF_TIME = OFF_MIN * 60 * 1000L;
+const int button_pin = 2;
+const int recording_led_pin = 3;
+const int mic_pin = A6;
+const int led_pin = 2;
+const int sample_rate = 20000;
+unsigned long init_time = millis();
+char file_name[20] = "";
+
+void setup() {
+  pinMode(led_pin, OUTPUT);
+  digitalWrite(led_pin, LOW);
+  //initialises the serial connection between the arduino and any connected serial device(e.g. computer, phone, raspberry pi...)
+  Serial.begin(9600);
+  Serial.println("loading...");
+  
+  //Begin rtc 
+    if (! rtc.begin()) {
+    Serial.println("Couldn't find RTC");
+    Serial.flush();
+    while (1) delay(10);
+  }
+  
+  Serial.print("Initializing SD card...");
+
+  //See if the card is present and can be initialized:
+  if (!SD.begin(SD_ChipSelectPin)) {
+    Serial.println("Card failed, or not present");
+    Serial.flush();
+    while (1); delay(10);
+  }
+  Serial.println("card initialized.");
+
+  //Sets up the pins
+  pinMode(mic_pin, INPUT);
+  //pinMode(recording_led_pin, OUTPUT);
+  //pinMode(button_pin, INPUT_PULLUP);
+
+  //Sets up the audio recording functionality
+  SD.begin(SD_ChipSelectPin);
+  audio.CSPin = SD_ChipSelectPin;
+
+  //Read time and convert it to Unix time format
+  filename_RTC(false);
+  state_rec = true;
+  Serial.println(file_name);
+  audio.startRecording(file_name, sample_rate, mic_pin);
+}
+
+void loop() {
+  unsigned long current_time = millis();
+  //Serial.println(current_time - init_time);
+  if((current_time - init_time) >= ON_TIME && state_rec == true){
+    Serial.println("STOP RECORDING");
+    audio.stopRecording(file_name);
+    init_time = millis();
+    current_time = millis();
+    state_rec = false;
+    char file_name[20] = ""; //delete name of the file
+  }
+  if (current_time - init_time >= OFF_TIME && state_rec == false){
+    Serial.println("START RECORDING");
+    filename_RTC(false);
+    Serial.println(file_name);
+    state_rec = true;
+    init_time = millis();  
+    current_time = millis();
+    audio.startRecording(file_name, sample_rate, mic_pin);
+  }
+}
+
+// Returns: hexadecimal unix time value
+String convert_to_unix(int year, int month, int day, int hour, int minute, int second){
+  String result;
+  UnixTime stamp(2); // GMT for spain in summer +2
+  
+  stamp.setDateTime(year, month, day, hour, minute, second);
+  uint32_t unix = stamp.getUnix();
+  result = String(unix, HEX);
+  return result;
+}
+
+// Returns: name of the file for recording based on the initial time of start recording
+void filename_RTC(bool show_time){
+  String date_unix;
+  DateTime time = rtc.now();
+
+  if (show_time == true){
+    Serial.println(time.timestamp(DateTime::TIMESTAMP_FULL));
+  }
+  date_unix = convert_to_unix(time.year(), time.month(), time.day(), time.hour(), time.minute(), time.second());
+  date_unix.toCharArray(file_name, 20);
+  strcat(file_name, ".wav");
+}
