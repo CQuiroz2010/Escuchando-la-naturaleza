@@ -92,7 +92,9 @@ La evaluación tendrá en cuenta:
 ---
 
 ## 📁 Estructura del repositorio
-
+│  ├── └──
+├── Alumnado
+│  └──
 
 ---
 
