@@ -37,7 +37,9 @@ Nuestro dispositivo funciona como un sistema de entrada-proceso-salida:
 - 🎤 Micrófono (sensor de sonido)  
 - 🧠 Arduino (microcontrolador)  
 - 💾 Módulo de tarjeta SD (almacenamiento)  
-- 🔋 Batería (alimentación autónoma)  
+- 🔋 Batería (alimentación autónoma)
+- 💰 Modulo RTC (reloj)
+  
 
 ---
 
