@@ -1,7 +1,7 @@
 # 🎧 Escuchando la Naturaleza  
 ### Diseño de una grabadora de audio autónoma
 
-![Diagrama](docs/Imagen2.png))
+![Diagrama](docs/Imagen2.png)
 
 ## 🌍 Descripción del proyecto
 
