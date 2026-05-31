@@ -1,7 +1,7 @@
 # 🎧 Escuchando la Naturaleza  
 ### Diseño de una grabadora de audio autónoma
 
-![Diagrama](docs/imagen2.jpg)
+![Diagrama]([docs/imagen2.jpg](https://github.com/CQuiroz2010/Escuchando-la-naturaleza/blob/main/docs/Imagen2.png))
 
 ## 🌍 Descripción del proyecto
 
