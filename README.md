@@ -92,16 +92,17 @@ La evaluación tendrá en cuenta:
 ---
 
 ## 📁 Estructura del repositorio
-.
-├── alumnos/
-│   ├── Presentación pdf para alumnos.pdf
-│   ├── Presentación power para los alumnos.pptx
-│   └── Recursos.txt
-├── profesorado/
-│   ├── Proyecto inmersion.pdf
-│   └── RA-Avaluar.xlsx
+```text
+📁 PROYECTO/
+│
+├── src/
+│   └── codigo.ino
+│
+├── docs/
+│   └── memoria.pdf
+│
 └── README.md
----
+```
 
 ## 📌 Nota
 
